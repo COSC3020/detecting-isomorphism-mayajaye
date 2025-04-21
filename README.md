@@ -24,7 +24,7 @@ I made this long and weird algorithm but I'm not sure if I'm fully testing for i
 I haven't found any test cases that fail with my algorithm, but I'm still not confident that I can move on to my analysis
 #### Sources
 
-I used [this](https://cr.yp.to/bib/1999/lamarca-sorting.pdf) to use the sort function on integers.
+I used [this](https://stackoverflow.com/questions/1063007/how-to-sort-an-array-of-integers) to use the sort function on integers.
 
 I used chatGPT to compare the lists of edges with .join(',').
 
