@@ -16,22 +16,27 @@ the function and run automatically when you commit through a GitHub action.
 
 What is the worst-case big $\Theta$ time complexity of your algorithm?
 
-The worst case would be an isomorphic graph, since it will run through all the steps and both sets of vertices and edges will be equal.
-
 The steps of this algorithm are:
 1. Check if $|V_{1}| = |V_{2}|$. $\Theta(1)$
 2. Check if the degree counts are equal for graphs 1 and 2. Getting the degree of each node iterates over all the edges, storing the degree count will iterate over $|V|$, and comparing all the degrees will take $|V|$. $\Theta(|V||E|)$
-3. Map $V_{1}$ to $V_{2}$. Checking if each $v_2$ is mapped will take $|V|$ since every $v_2$ is mapped once. Getting the degrees of each connected node will take $|V|^{2}|E|$ since we have to run getDegrees inside getEdgeDegrees. Mapping will take $|V|$ since we have to map every node. Overall, this step takes $\Theta(|V|^{2}|E|)$ since that is the $\Theta$ complexity of $(2|V| + |V|^{2}|E|)$
-4. Make the remapped graph. $\Theta(|V|+|E|)$
-5. For the length of $V_1$, compare all edges. $\Theta(|V||E|)$
+3. Generate all permutations. This will always generate $|V|!$ permutations. $\Theta(|V|!)$
+4. For loop over all permutations on the worst case. $\Theta(|V|!)$
+    1. Rename each node. This will take $|V|$ since each node will be mapped once.
+    2. Make the remapped graph. $\Theta(|V|+|E|)$
+    3. For the length of $V_1$, compare all edges. $\Theta(|V||E|)$
+3. Return false if no match found. $\Theta(1)$
 
 The runtime equation is:
 
-$T(n) = 1 + 2(|V||E|) + |V|^{2}|E| + |V| + |E|$
+$T(n) = 1 + (|V||E|) + |V|! + (|V|!(|V| + |V| + |E| + |V||E|)) + 1$
+
+$= 1 + (|V||E|) + |V|! + 2|V|!|V| + |V|!|E| + |V|!|V||E| + 1$
 
 Ignoring the asymptotically insignificant terms, we can conclude that
 
-$T(n) \in \Theta(|V|^{2}|E|)$
+$T(n) \in \Theta(|V|!|V||E|)$
+
+Though altering my code to store and test the possible permutations of V2 based on degree sequence would be generally more efficient, the worst case complexity would be the same as generating all permutations since graphs with the same degree sequence for each node would have |V|! permutations. So, for this assignment I ended up just doing two checks then testing all permutations of graph2 against graph1. 
 
 #### Sources
 
